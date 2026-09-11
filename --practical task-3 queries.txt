@@ -1,0 +1,146 @@
+-->practical task-3 queries sql answers:-
+task1: create database banking_db;
+task2:  use banking_db;
+task3:  create table accounts(account_id int primary key, account_number varchar(20),customer_name varchar(100),account_type varchar(30),branch varchar(50),city varchar(50),balance decimal(12,2),credit_score int,status varchar(20),opened_date DATE);
+task4: desc accounts;
+task5: show tables;
+task6:  INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1001, 'ACC10001', 'Aarav Sharma', 'Savings', 'FC Road', 'Pune', 85000, 780, 'Active', '2025-01-15');
+task7: INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1002, 'ACC10002', 'Priya Patil', 'Current', 'Andheri', 'Mumbai', 145000, 810, 'Active', '2024-11-20');
+task8: INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1003, 'ACC10003', 'Rohan Joshi', 'Savings', 'Baner', 'Pune', 42000, 735, 'Active', '2026-02-10');
+task9: INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1004, 'ACC10004', 'Sneha Kulkarni', 'Salary', 'Nashik Road', 'Nashik', 67000, 760, 'Active', '2025-08-05');
+task10:  INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1005, 'ACC10005', 'Vikram Deshmukh', 'Savings', 'Camp', 'Pune', 18500, 690, 'Dormant', '2023-06-18');
+task11: INSERT INTO accounts
+    -> (account_id, account_number, customer_name, account_type, branch, city, balance, credit_score, status, opened_date)
+    -> VALUES
+    -> (1006, 'ACC10006', 'Neha More', 'Current', 'Thane', 'Mumbai', 225000, 825, 'Active', '2024-03-12');
+task12: select * from accounts;
+task13: select customer_name, account_number from accounts;
+task14: select customer_name,account_type,balance,status from accounts;
+task15: select * from accounts where account_type='savings';
+task16: select * from accounts where city='pune';
+task17: select * from accounts where balance>50000;
+task18: select * from accounts where balance<=50000;
+task19: select * from accounts where balance BETWEEN 50000 AND 200000;
+task20: select * from accounts where credit_score>=750;
+task21: select * from accounts where status='active';
+task22: select * from accounts where status='dormant' OR status='closed';
+task23: select * from accounts where city='pune' AND status='active';
+task24: select * from accounts where city='mumbai' OR city='nashik'; 
+       -- select * from accounts where city IN ('mumbai','nashik');
+task25: select * from accounts where account_type IN ('savings','salary');
+task26: select * from accounts where balance NOT BETWEEN 25000 AND 100000;
+task27: select * from accounts where customer_name like 'A%';
+task28: select * from accounts where customer_name like '%A';
+task29: select * from accounts where branch LIKE '%road%';
+task30: select * from accounts ORDER BY balance DESC LIMIT 3;
+task31: select * from accounts limit 5;
+task32: select * from accounts limit 3,3;
+task33: select * from accounts where city='pune' and status='active' and account_type='savings' and balance>50000;
+task34: select * from accounts where city IN('pune', 'mumbai','nashik') and credit_score>=750;
+task35: select * from accounts where balance> 100000 and credit_score>= 800;
+task36: select * from accounts where balance BETWEEN 50000 AND 150000 OR credit_score>800;
+task37: select * from accounts where status='active' AND account_type!='current';
+task38: select * from accounts where customer_name LIKE '%ar%';
+task39: update accounts set balance='95000' where customer_name='aarav sharma';
+task40: update accounts set status='active' where customer_name='vikram deshmukh';
+task41: update accounts set credit_score=755 where customer_name='rohan joshi';
+task42: update accounts set branch='college road' where customer_name='sneha kulkarni';
+task43: update accounts set account_type='premium current' where customer_name='priya patil';
+task44: update accounts set balance=balance + 25000 where account_id=1006;
+task45: update accounts set balance=balance + 5000 where account_type='savings';
+task46: update accounts set city='pune city' where city='pune';
+task47: update accounts set credit_score= credit_score + 10 where status='active' and credit_score<750;
+task48: update accounts set status='dormant' where balance<20000;
+task49: delete from accounts where account_id=1005;
+task50: delete from accounts where account_number='ACC10004';
+task51: delete from accounts where status='closed';
+task52: delete from accounts where balance<10000 OR credit_score<600;
+task53: delete from accounts where city='pune' and status='dormant';
+task54:  alter table accounts add column email varchar(100);
+mysql> desc accounts;
+task55: alter table accounts add column mobile varchar(15);
+task56:  alter table accounts modify column branch varchar(100);
+task57: alter table accounts rename column  customer_name to name ;
+task58: alter table accounts drop column mobile;
+
+partG:
+task59: 
+ --> alter table accounts add column account_category varchar(30);
+Query OK, 0 rows affected (0.03 sec)
+Records: 0  Duplicates: 0  Warnings: 0
+
+mysql> update accounts set account_category='premium' where account_id=1001;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> update accounts set account_category='regular' where account_id=1002;
+Query OK, 1 row affected (0.01 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select account_category, name, account_id from accounts;
++------------------+--------------+------------+
+| account_category | name         | account_id |
++------------------+--------------+------------+
+| premium          | Aarav Sharma |       1001 |
+| regular          | Priya Patil  |       1002 |
+| NULL             | Rohan Joshi  |       1003 |
+| NULL             | Neha More    |       1006 |
++------------------+--------------+------------+
+4 rows in set (0.00 sec)
+
+mysql> rename table accounts to bank_accounts;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
++----------------------+
+| Tables_in_banking_db |
++----------------------+
+| bank_accounts        |
++----------------------+
+1 row in set (0.00 sec)
+ 
+task60: 
+ desc bank_accounts;
++------------------+---------------+------+-----+---------+-------+
+| Field            | Type          | Null | Key | Default | Extra |
++------------------+---------------+------+-----+---------+-------+
+| account_id       | int           | NO   | PRI | NULL    |       |
+| account_number   | varchar(20)   | YES  |     | NULL    |       |
+| name             | varchar(100)  | YES  |     | NULL    |       |
+| account_type     | varchar(30)   | YES  |     | NULL    |       |
+| branch           | varchar(100)  | YES  |     | NULL    |       |
+| city             | varchar(50)   | YES  |     | NULL    |       |
+| balance          | decimal(12,2) | YES  |     | NULL    |       |
+| credit_score     | int           | YES  |     | NULL    |       |
+| status           | varchar(20)   | YES  |     | NULL    |       |
+| opened_date      | date          | YES  |     | NULL    |       |
+| email            | varchar(100)  | YES  |     | NULL    |       |
+| account_category | varchar(30)   | YES  |     | NULL    |       |
++------------------+---------------+------+-----+---------+-------+
+12 rows in set (0.00 sec)
+
+mysql> truncate table bank_accounts;
+Query OK, 0 rows affected (0.04 sec)
+
+-->  drop table bank_accounts;
+Query OK, 0 rows affected (0.03 sec)
+
+mysql> show tables;
+Empty set (0.00 sec)
+
+
